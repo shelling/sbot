@@ -39,6 +39,8 @@ class EventsController < ApplicationController
   private
 
   def stop_soliloquizing
-    render json: params.slice(:challenge) if params[:event][:user] == "U65TP12CA"
+    if params[:event][:user] == "U65TP12CA" || (params[:event][:message] && params[:event][:message][:user] == "U65TP12CA")
+      render json: params.slice(:challenge)
+    end
   end
 end
