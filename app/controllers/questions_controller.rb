@@ -4,9 +4,10 @@ class QuestionsController < ApplicationController
   def create
     payload = JSON.parse(params[:payload])
     render json: {
+      text: "Answer to #{payload['actions'].first['name']}",
       attachments: [
         {
-          text: "Answer to #{payload["actions"].first["name"]}",
+          text: payload['actions'].first['name'],
           fallback: "No Attachment",
           callback_id: "1",
           color: "#3AA3E3",
